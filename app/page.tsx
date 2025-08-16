@@ -31,6 +31,7 @@ export default function CoovritLanding() {
   const [showTooltip, setShowTooltip] = useState(false)
   const [currentSlide, setCurrentSlide] = useState(0)
   const [navbarOpacity, setNavbarOpacity] = useState(0.95)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const whatsappNumber = "0752881504"
 
@@ -120,7 +121,7 @@ export default function CoovritLanding() {
           y: { duration: 0.6, ease: "easeOut" },
           opacity: { duration: 0.3 }
         }}
-        className="header-fixed backdrop-blur-xl border-b border-white/10"
+        className="header-fixed backdrop-blur-xl border-b border-white/10 flex flex-col md:flex-row md:items-center md:justify-between px-2 md:px-6"
         style={{
           background: `linear-gradient(135deg, rgba(255,255,255,${0.95 + navbarOpacity * 0.05}) 0%, rgba(248,250,252,${0.97 + navbarOpacity * 0.03}) 100%)`,
           boxShadow: `0 8px 32px rgba(0,0,0,${0.1 + navbarOpacity * 0.1})`,
@@ -159,12 +160,12 @@ export default function CoovritLanding() {
           </svg>
         </div>
 
-        <div className="relative container mx-auto px-6">
-          <div className="flex items-center justify-between h-20">
+        <div className="relative container mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
             
             {/* Logo Section with Professional Contact Image */}
             <motion.div 
-              className="flex items-center space-x-6"
+              className="flex items-center space-x-3 sm:space-x-4 md:space-x-6"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
             >
@@ -191,7 +192,7 @@ export default function CoovritLanding() {
 
               {/* Logo with Enhanced Design */}
               <motion.div 
-                className="flex items-center space-x-3"
+                className="flex items-center space-x-2 sm:space-x-3"
                 whileHover={{ x: 3 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -206,9 +207,9 @@ export default function CoovritLanding() {
                   <Image
                     src="/logo.png"
                     alt="COOVRIT Logo"
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 object-contain"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain"
                   />
                   <motion.div
                     className="absolute -inset-1 bg-gradient-to-r from-emerald-400/30 to-blue-500/30 rounded-full blur-sm"
@@ -226,7 +227,7 @@ export default function CoovritLanding() {
                 
                 <div className="flex flex-col">
                   <motion.h1 
-                    className="text-2xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-blue-700 bg-clip-text text-transparent"
+                    className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-blue-700 bg-clip-text text-transparent"
                     whileHover={{ 
                       scale: 1.05,
                       textShadow: "0 2px 8px rgba(34, 197, 94, 0.3)"
@@ -235,7 +236,7 @@ export default function CoovritLanding() {
                     COOVRIT
                   </motion.h1>
                   <motion.p 
-                    className="text-xs text-gray-600 font-medium tracking-wide"
+                    className="text-xs sm:text-xs text-gray-600 font-medium tracking-wide hidden sm:block"
                     initial={{ opacity: 0, y: 5 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -251,7 +252,7 @@ export default function CoovritLanding() {
               {[
                 { name: "Accueil", id: "accueil" },
                 { name: "Produits", id: "produits" },
-                { name: "À Propos", id: "avantages" },
+                { name: "À Propos", id: "pourquoi-nous" },
                 { name: "Contact", id: "contact" }
               ].map((item, index) => (
                 <motion.button
@@ -315,7 +316,7 @@ export default function CoovritLanding() {
             >
               <Button
                 onClick={() => openWhatsAppGeneral()}
-                className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 hover:from-emerald-700 hover:via-green-700 hover:to-teal-700 text-white font-bold px-6 py-2.5 rounded-xl shadow-lg overflow-hidden group border-0"
+                className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 hover:from-emerald-700 hover:via-green-700 hover:to-teal-700 text-white font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-xl shadow-lg overflow-hidden group border-0 text-xs sm:text-sm"
                 style={{
                   boxShadow: "0 8px 20px rgba(34, 197, 94, 0.3)"
                 }}
@@ -327,7 +328,7 @@ export default function CoovritLanding() {
                 <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition-opacity duration-300 -z-10" />
                 
                 <motion.div
-                  className="flex items-center space-x-2 relative z-10"
+                  className="flex items-center space-x-1 sm:space-x-2 relative z-10"
                   whileHover={{ x: 2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -335,16 +336,17 @@ export default function CoovritLanding() {
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                   >
-                    <FaWhatsapp className="h-4 w-4" />
+                    <FaWhatsapp className="h-3 w-3 sm:h-4 sm:w-4" />
                   </motion.div>
-                  <span className="text-sm">Devis Gratuit</span>
+                  <span className="text-xs sm:text-sm">Devis Gratuit</span>
                 </motion.div>
               </Button>
             </motion.div>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden relative w-8 h-8 flex flex-col justify-center items-center"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden relative w-10 h-10 flex flex-col justify-center items-center rounded-lg hover:bg-gray-100/50 transition-colors duration-200"
               whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -353,18 +355,25 @@ export default function CoovritLanding() {
               <motion.span
                 className="block w-6 h-0.5 bg-gray-700 rounded"
                 animate={{ 
-                  rotate: 0,
-                  y: 0
+                  rotate: isMobileMenuOpen ? 45 : 0,
+                  y: isMobileMenuOpen ? 6 : 0
                 }}
-                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.3 }}
               />
               <motion.span
                 className="block w-6 h-0.5 bg-gray-700 rounded mt-1"
-                whileHover={{ scale: 1.1 }}
+                animate={{ 
+                  opacity: isMobileMenuOpen ? 0 : 1
+                }}
+                transition={{ duration: 0.3 }}
               />
               <motion.span
                 className="block w-6 h-0.5 bg-gray-700 rounded mt-1"
-                whileHover={{ scale: 1.1 }}
+                animate={{ 
+                  rotate: isMobileMenuOpen ? -45 : 0,
+                  y: isMobileMenuOpen ? -6 : 0
+                }}
+                transition={{ duration: 0.3 }}
               />
             </motion.button>
           </div>
@@ -378,6 +387,110 @@ export default function CoovritLanding() {
           transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
         />
       </motion.header>
+
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+            />
+            
+            {/* Menu */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden fixed top-16 sm:top-18 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-xl"
+            >
+            <div className="container mx-auto px-4 py-6">
+              <nav className="flex flex-col space-y-4">
+                <motion.a
+                  href="#accueil"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="text-gray-700 hover:text-emerald-600 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50/50 transition-all duration-200"
+                  whileHover={{ x: 5 }}
+                >
+                  Accueil
+                </motion.a>
+                <motion.a
+                  href="#produits"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    const element = document.getElementById("produits");
+                    if (element) {
+                      const headerHeight = 80;
+                      const offsetTop = element.offsetTop - headerHeight;
+                      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+                    }
+                  }}
+                  className="text-gray-700 hover:text-emerald-600 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50/50 transition-all duration-200"
+                  whileHover={{ x: 5 }}
+                >
+                  Produits
+                </motion.a>
+                <motion.a
+                  href="#pourquoi-nous"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    const element = document.getElementById("pourquoi-nous");
+                    if (element) {
+                      const headerHeight = 80;
+                      const offsetTop = element.offsetTop - headerHeight;
+                      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+                    }
+                  }}
+                  className="text-gray-700 hover:text-emerald-600 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50/50 transition-all duration-200"
+                  whileHover={{ x: 5 }}
+                >
+                  À propos
+                </motion.a>
+                <motion.a
+                  href="#contact"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    const element = document.getElementById("contact");
+                    if (element) {
+                      const headerHeight = 80;
+                      const offsetTop = element.offsetTop - headerHeight;
+                      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+                    }
+                  }}
+                  className="text-gray-700 hover:text-emerald-600 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50/50 transition-all duration-200"
+                  whileHover={{ x: 5 }}
+                >
+                  Contact
+                </motion.a>
+                <motion.div
+                  className="pt-4 border-t border-gray-200"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      openWhatsAppGeneral();
+                    }}
+                    className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg"
+                  >
+                    <FaWhatsapp className="mr-2 h-4 w-4" />
+                    Devis Gratuit
+                  </Button>
+                </motion.div>
+              </nav>
+            </div>
+          </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -465,12 +578,12 @@ export default function CoovritLanding() {
         </div>
 
         {/* Main Content Container */}
-        <div className="relative z-10 container mx-auto px-6 py-20 pt-32">
-          <div className="grid lg:grid-cols-2 gap-40 items-center">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20 pt-20 sm:pt-24 md:pt-32">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-40 items-center">
             
             {/* Left Column - Content */}
             <motion.div 
-              className="space-y-8"
+              className="space-y-4 sm:space-y-6 md:space-y-8 text-center lg:text-left"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
@@ -497,7 +610,7 @@ export default function CoovritLanding() {
                     duration: 0.8, 
                     ease: "easeOut"
                   }}
-                  className="space-y-6"
+                  className="space-y-4 sm:space-y-5 md:space-y-6"
                 >
                   {/* Professional Badge */}
                   <motion.div
@@ -511,12 +624,12 @@ export default function CoovritLanding() {
                     }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    <Badge className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm text-gray-800 border border-emerald-200/50 shadow-xl px-6 py-3 text-sm font-semibold rounded-full">
+                    <Badge className="inline-flex items-center gap-2 sm:gap-3 bg-white/80 backdrop-blur-sm text-gray-800 border border-emerald-200/50 shadow-xl px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold rounded-full">
                       <motion.div
                         animate={{ rotate: [0, 360] }}
                         transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                       >
-                        <Sparkles className="w-4 h-4 text-emerald-600" />
+                        <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600" />
                       </motion.div>
                       <span className="text-emerald-700">{slideContent[currentSlide].badge}</span>
                     </Badge>
@@ -524,7 +637,7 @@ export default function CoovritLanding() {
                   
                   {/* Main Headline */}
                   <motion.h1 
-                    className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
@@ -568,7 +681,7 @@ export default function CoovritLanding() {
 
                   {/* CTA Buttons */}
                   <motion.div
-                    className="flex flex-col sm:flex-row gap-2 pt-4"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-4 w-full"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8, duration: 0.6 }}
@@ -590,7 +703,7 @@ export default function CoovritLanding() {
                             });
                           }
                         }}
-                        className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 hover:from-emerald-700 hover:via-green-700 hover:to-teal-700 text-white shadow-2xl font-bold px-8 py-4 rounded-2xl overflow-hidden group border-0 text-lg"
+                        className="relative bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 hover:from-emerald-700 hover:via-green-700 hover:to-teal-700 text-white shadow-2xl font-bold px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl overflow-hidden group border-0 text-sm sm:text-base md:text-lg w-full sm:w-auto"
                         style={{
                           boxShadow: "0 15px 35px rgba(34, 197, 94, 0.4), 0 0 0 1px rgba(255,255,255,0.1) inset"
                         }}
@@ -599,16 +712,17 @@ export default function CoovritLanding() {
                         <div className="absolute -inset-3 bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 rounded-2xl blur opacity-30 group-hover:opacity-60 transition-opacity duration-300 -z-10" />
                         
                         <motion.div
-                          className="flex items-center space-x-3 relative z-10"
+                          className="flex items-center justify-center space-x-2 sm:space-x-3 relative z-10"
                           whileHover={{ x: 3 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
-                          <span>{slideContent[currentSlide].cta}</span>
+                          <span className="text-center whitespace-normal break-words leading-tight">{slideContent[currentSlide].cta}</span>
                           <motion.div
                             whileHover={{ rotate: 90, scale: 1.2 }}
                             transition={{ duration: 0.3 }}
+                            className="flex-shrink-0"
                           >
-                            <ArrowRight className="h-5 w-5" />
+                            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
                           </motion.div>
                         </motion.div>
                       </Button>
@@ -629,7 +743,7 @@ export default function CoovritLanding() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
-                className="flex space-x-3 pt-6"
+                className="flex justify-center space-x-3 pt-6"
               >
                 {[0, 1, 2, 3].map((index) => (
                   <motion.button
@@ -662,16 +776,16 @@ export default function CoovritLanding() {
 
             {/* Right Column - Professional Image */}
             <motion.div 
-              className="relative"
+              className="relative mt-8 lg:mt-0 order-first lg:order-last"
               initial={{ opacity: 0, x: 50, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
             >
               <div className="relative">
                 {/* Background decorative elements */}
-                <div className="absolute -inset-8">
+                <div className="absolute -inset-4 sm:-inset-6 md:-inset-8">
                   <motion.div
-                    className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20"
+                    className="absolute top-0 right-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full opacity-20"
                     style={{ 
                       background: "radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)",
                       filter: "blur(25px)"
@@ -708,7 +822,7 @@ export default function CoovritLanding() {
 
                 {/* Main professional image */}
                 <motion.div
-                  className="relative w-full max-w-lg mx-auto"
+                  className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto"
                   whileHover={{ 
                     scale: 1.02,
                     rotateY: 5,
@@ -717,7 +831,7 @@ export default function CoovritLanding() {
                   transition={{ duration: 0.6, ease: "easeOut" }}
                   style={{ transformStyle: "preserve-3d" }}
                 >
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl">
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-blue-500/10 z-10" />
                     
